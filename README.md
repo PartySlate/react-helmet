@@ -1,3 +1,36 @@
+# Partyslate fork of the React Helmet project
+
+We've created this fork so we can apply a patch to the React Helmet project to
+support custom ordering of header tags.
+
+We also use this repo as the package source for our main app.
+
+# Building the `deploy` branch
+
+Since the entry point to the package is built from source in the original repo,
+and since we don't want to maintain an NPM package, we're going to host the
+package build in a `deploy` branch here.
+
+This allows us to reference our build in our `package.json` like this...
+
+```
+  "react-helmet": "PartySlate/react-helmet#deploy",
+```
+
+When we update our fork, we may need to re-create the work that went into the
+deploy branch.
+
+1. Run the `yarn build` command. This will create the `lib/` directory with
+a `Helmet.js` file inside it.
+2. Remove the `lib` line from `.gitignore`
+3. Create a new branch called "deploy" `git checkout -b deploy` and check in
+these changes. Push the new `deploy` branch when ready.
+
+If we wind up doing this process very often, we will probably want to switch
+to using version tags instead of a single deploy branch.
+
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 <img align="right" width="200" src="http://static.nfl.com/static/content/public/static/img/logos/react-helmet.jpg" />
 
 # React Helmet
@@ -200,9 +233,9 @@ Or to import the *react-helmet* instance from the app on the server.
         </head>
     */}
     defaultTitle="My Default Title"
-    
+
     {/* (optional) set to false to not use requestAnimationFrame and instead update the DOM as soon as possible.
-        Useful if you want to update the title when the tab is out of focus 
+        Useful if you want to update the title when the tab is out of focus
     */}
     defer={false}
 
